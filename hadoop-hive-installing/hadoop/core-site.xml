@@ -6,7 +6,7 @@
 <configuration>
 <property>
         <name>fs.default.name</name>
-        <value>hdfs://dev-hadoop:9000</value>
+        <value>hdfs://localhost:9000</value>
      </property>
      <property>
              <name>hadoop.tmp.dir</name>
