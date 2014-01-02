@@ -24,12 +24,10 @@ Starting Hive
 
     hive
     
-Access DFS on browser
-
-    http://192.168.33.15:50070/dfshealth.jsp
+Access DFS on browser 
+[http://192.168.33.15:50070/dfshealth.jsp](http://192.168.33.15:50070/dfshealth.jsp)
     
 Access job tracker on browser
-
-    http://192.168.33.15:50030/jobtracker.jsp
+[http://192.168.33.15:50030/jobtracker.jsp](http://192.168.33.15:50030/jobtracker.jsp)
     
 *NOTEs: 192.168.33.15 is private ip of Virtual machine*
