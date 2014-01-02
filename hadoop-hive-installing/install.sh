@@ -58,6 +58,7 @@ echo 'export PATH=$PATH:$HADOOP_HOME:/bin:$HIVE_HOME/bin' >> /home/vagrant/.bash
 
 # copy some config file for hadoop.
 cp -rf /home/vagrant/hadoop-hive-installing/hadoop/* $HADOOP_HOME/conf/
+echo 'export JAVA_HOME=/usr' >> $HADOOP_HOME/conf/hadoop-env.sh
 
 # create hdfs folder
 mkdir /home/vagrant/hdfs

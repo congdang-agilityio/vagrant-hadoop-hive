@@ -6,10 +6,10 @@
 <configuration>
 <property>
         <name>fs.default.name</name>
-        <value>hdfs://myhadoop:9000</value>
+        <value>hdfs://dev-hadoop:9000</value>
      </property>
      <property>
              <name>hadoop.tmp.dir</name>
-             <value>~hdfs/tmp</value>
+             <value>/home/vagrant/hdfs/tmp</value>
      </property>
 </configuration>
