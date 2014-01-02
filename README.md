@@ -24,6 +24,10 @@ Starting Hive
 
     hive
     
+For testing, create a sample table
+
+    hive>CREATE TABLE pokes (foo INT, bar STRING);
+    
 Access DFS on browser 
 [http://192.168.33.15:50070/dfshealth.jsp](http://192.168.33.15:50070/dfshealth.jsp)
     
