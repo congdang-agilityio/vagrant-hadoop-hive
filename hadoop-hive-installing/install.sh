@@ -1,4 +1,5 @@
 #! /bin/sh
+#
 # This script would install openjdk 1.7
 # and hadoop 1.2.1
 # and hive 0.11.0
@@ -41,7 +42,7 @@ echo "Exporting envirionment variable..."
 export JAVA_HOME=/usr
 export HADOOP_HOME=/home/vagrant/hadoop-1.2.1
 export HIVE_HOME=/home/vagrant/hive-0.11.0
-export PATH=$PATH:$HADOOP_HOME:/bin:$HIVE_HOME/bin
+export PATH=$PATH:$HADOOP_HOME/bin:$HIVE_HOME/bin
 
 # for later
 echo 'export JAVA_HOME=/usr' >> /home/vagrant/.bashrc 
@@ -53,16 +54,21 @@ echo 'export HADOOP_HOME=/home/vagrant/hadoop-1.2.1' >> /home/vagrant/.bashrc
 echo 'export HIVE_HOME=/home/vagrant/hive-0.11.0' >> /home/vagrant/.bashrc 
 
 # export PATH
-echo 'export PATH=$PATH:$HADOOP_HOME:/bin:$HIVE_HOME/bin' >> /home/vagrant/.bashrc 
+echo 'export PATH=$PATH:$HADOOP_HOME/bin:$HIVE_HOME/bin' >> /home/vagrant/.bashrc 
 
 
 # copy some config file for hadoop.
 cp -rf /home/vagrant/hadoop-hive-installing/hadoop/* $HADOOP_HOME/conf/
+
+# exporting java home for hadoop.
 echo 'export JAVA_HOME=/usr' >> $HADOOP_HOME/conf/hadoop-env.sh
+
+# avoid waning Warning: $HADOOP_HOME is deprecated.
+echo 'export HADOOP_HOME_WARN_SUPPRESS="TRUE"' >> $HADOOP_HOME/conf/hadoop-env.sh
 
 # create hdfs folder
 mkdir /home/vagrant/hdfs
-sudo chmod -R 755 /home/vagrant/hdfs
+sudo chmod -R 777 /home/vagrant/hdfs/
 
 # format hadoop hdfs
 $HADOOP_HOME/bin/hadoop namenode -format

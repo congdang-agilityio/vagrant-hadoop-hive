@@ -13,6 +13,10 @@
              <value>/home/vagrant/hdfs/data</value>
       </property>
       <property>
+          <name>dfs.permissions</name>
+          <value>false</value>
+      </property>
+      <property>
              <name>dfs.replication</name>
              <value>1</value>
       </property>
