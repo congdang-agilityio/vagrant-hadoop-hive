@@ -34,4 +34,4 @@ Access DFS on browser
 Access job tracker on browser
 [http://192.168.33.15:50030/jobtracker.jsp](http://192.168.33.15:50030/jobtracker.jsp)
     
-*NOTEs: 192.168.33.15 is private ip of Virtual machine*
+*NOTEs: 192.168.33.15 is private ip of Virtual machine, you can change in Vagrantfile*
