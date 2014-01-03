@@ -67,13 +67,6 @@ echo 'export JAVA_HOME=/usr' >> $HADOOP_HOME/conf/hadoop-env.sh
 # avoid waning Warning: $HADOOP_HOME is deprecated.
 echo 'export HADOOP_HOME_WARN_SUPPRESS="TRUE"' >> $HADOOP_HOME/conf/hadoop-env.sh
 
-# create hdfs folder
-mkdir /home/vagrant/hdfs
-sudo chmod -R 777 /home/vagrant/hdfs/
-
-# format hadoop hdfs
-$HADOOP_HOME/bin/hadoop namenode -format -force
-
 # set full permission for hadoop home
 sudo chmod -R 777 /home/vagrant/hadoop-1.2.1/
 

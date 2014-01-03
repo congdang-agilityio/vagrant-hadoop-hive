@@ -18,24 +18,33 @@ Clone this project to local machine and run
 
 This would up the ubuntu server box and install some packages. Once running is done, you should see the "Good luck!" message, so everything shoud be ready. 
 
-SSH to VM
+* SSH to VM
 
     vagrant ssh
 
-For starting hadoop without asking the password
+* Create hdfs folder
+
+	mkdir /home/vagrant/hdfs
+	chmod -R 777 /home/vagrant/hdfs/
+
+* Format Hadoop HDFS
+	
+	hadoop namenode -format -force
+
+* For starting hadoop without asking the password
 
 	ssh-keygen -t dsa -P '' -f /home/vagrant/.ssh/id_dsa
 	cat /home/vagrant/.ssh/id_dsa.pub >> /home/vagrant/.ssh/authorized_keys
 
-Starting Hadoop
+* Starting Hadoop
 	
 	start-all.sh
 	
-Starting Hive
+* Starting Hive
 
     hive
     
-For testing, create a sample table
+* For testing, create a sample table
 
     hive>CREATE TABLE pokes (foo INT, bar STRING);
     
