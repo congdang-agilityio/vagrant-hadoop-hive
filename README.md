@@ -28,8 +28,9 @@ For starting hadoop without asking the password
 	cat /home/vagrant/.ssh/id_dsa.pub >> /home/vagrant/.ssh/authorized_keys
 
 Starting Hadoop
+	
 	start-all.sh
-
+	
 Starting Hive
 
     hive
