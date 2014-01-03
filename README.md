@@ -5,6 +5,8 @@ Create a box which includes
 * OpenJDK 1.7
 * Apache Hadoop 1.2.1
 * Apache Hive 0.11.0
+* Mysql 5.5
+* Apache Sqoop 1.4.4
 
 Use
 ===
@@ -47,7 +49,15 @@ This would up the ubuntu server box and install some packages. Once running is d
 * For testing, create a sample table
 
 		hive>CREATE TABLE pokes (foo INT, bar STRING);
-    
+
+* Use Sqoop
+
+		sqoop help
+
+* Use MySql
+
+		mysql -uroot -proot
+
 Access DFS on browser 
 		[http://dev-hadoop:50070/dfshealth.jsp](http://dev-hadoop:50070/dfshealth.jsp)
     

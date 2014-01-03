@@ -20,7 +20,6 @@ if [ ! -f /home/vagrant/hadoop-1.2.1.tar.gz ]; then
 	
 fi
 
-
 # download Hive 0.11.0 from official site
 if [ ! -f /home/vagrant/hive-0.11.0.tar.gz ]; then
 	echo "Start download Hive 0.11.0..."
@@ -30,6 +29,16 @@ if [ ! -f /home/vagrant/hive-0.11.0.tar.gz ]; then
 	tar -xvf /home/vagrant/hive-0.11.0.tar.gz
 fi
 
+# download Hive 0.11.0 from official site
+if [ ! -f /home/vagrant/sqoop-1.4.4.bin__hadoop-1.0.0.tar.gz ]; then
+	echo "Start download sqoop 1.4.4 ..."
+	wget -c http://mirrors.digipower.vn/apache/sqoop/1.4.4/sqoop-1.4.4.bin__hadoop-1.0.0.tar.gz /home/vagrant/sqoop-1.4.4.bin__hadoop-1.0.0.tar.gz
+
+	# untar the package
+	tar -xvf /home/vagrant/sqoop-1.4.4.bin__hadoop-1.0.0.tar.gz
+fi
+
+
 # installing java and set java home
 # install open java 7
 echo "UPDATING OS..."
@@ -38,12 +47,20 @@ sudo apt-get update
 echo "START DOWNLOADING JAVA..."
 sudo apt-get install --force-yes --yes openjdk-7-jre-headless
 
+
+echo "START INSTALLING MYSQL..."
+sudo echo "mysql-server-5.5 mysql-server/root_password password root" | debconf-set-selections
+sudo echo "mysql-server-5.5 mysql-server/root_password_again password root" | debconf-set-selections
+sudo apt-get install --force-yes --yes mysql-server
+sudo apt-get install --force-yes --yes mysql-client-core-5.5
+
 echo "Exporting envirionment variable..."
 # for first time
 export JAVA_HOME=/usr
 export HADOOP_HOME=/home/vagrant/hadoop-1.2.1
 export HIVE_HOME=/home/vagrant/hive-0.11.0
-export PATH=$PATH:$HADOOP_HOME/bin:$HIVE_HOME/bin
+export SQOOP_HOME=/home/vagrant/sqoop-1.4.4.bin__hadoop-1.0.0
+export PATH=$PATH:$HADOOP_HOME/bin:$HIVE_HOME/bin:$SQOOP_HOME/bin
 
 # for later
 echo 'export JAVA_HOME=/usr' >> /home/vagrant/.bashrc 
@@ -54,8 +71,11 @@ echo 'export HADOOP_HOME=/home/vagrant/hadoop-1.2.1' >> /home/vagrant/.bashrc
 # set HIVE_HOME
 echo 'export HIVE_HOME=/home/vagrant/hive-0.11.0' >> /home/vagrant/.bashrc 
 
+# set SQOOP_HOME
+echo 'export SQOOP_HOME=/home/vagrant/sqoop-1.4.4.bin__hadoop-1.0.0' >> /home/vagrant/.bashrc 
+
 # export PATH
-echo 'export PATH=$PATH:$HADOOP_HOME/bin:$HIVE_HOME/bin' >> /home/vagrant/.bashrc 
+echo 'export PATH=$PATH:$HADOOP_HOME/bin:$HIVE_HOME/bin:$SQOOP_HOME/bin' >> /home/vagrant/.bashrc 
 
 
 # copy some config file for hadoop.
@@ -66,6 +86,9 @@ echo 'export JAVA_HOME=/usr' >> $HADOOP_HOME/conf/hadoop-env.sh
 
 # avoid waning Warning: $HADOOP_HOME is deprecated.
 echo 'export HADOOP_HOME_WARN_SUPPRESS="TRUE"' >> $HADOOP_HOME/conf/hadoop-env.sh
+
+# Download JDBC driver jar and store to sqood lib.
+wget -c https://mapmap.googlecode.com/files/mysql-connector-java-5.0.8-bin.jar /home/vagrant/sqoop-1.4.4.bin__hadoop-1.0.0/lib/mysql-connector-java-5.0.8-bin.jar
 
 # set full permission for hadoop home
 sudo chmod -R 777 /home/vagrant/hadoop-1.2.1/
