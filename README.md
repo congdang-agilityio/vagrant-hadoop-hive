@@ -54,4 +54,10 @@ Access DFS on browser
 Access job tracker on browser
 		[http://dev-hadoop:50030/jobtracker.jsp](http://dev-hadoop:50030/jobtracker.jsp)
     
-*NOTEs: dev-hadoop is forwarding to 192.168.33.15 automatic, this is private ip of Virtual machine, you can change in Vagrantfile*
+Notes
+=====
+* dev-hadoop is forwarding to 192.168.33.15 automatic, this is private ip of Virtual machine, you can change in Vagrantfile
+* When vagrant up again, you must start hadoop manualy too.
+ 
+
+*Feel free to give me some comment over email congdng@gmail.com. Thanks~*
