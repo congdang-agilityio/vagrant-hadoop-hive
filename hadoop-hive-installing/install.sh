@@ -17,6 +17,7 @@ if [ ! -f /home/vagrant/hadoop-1.2.1.tar.gz ]; then
 
 	# untar the package.
 	tar -xvf /home/vagrant/hadoop-1.2.1.tar.gz
+	
 fi
 
 
@@ -71,9 +72,9 @@ mkdir /home/vagrant/hdfs
 sudo chmod -R 777 /home/vagrant/hdfs/
 
 # format hadoop hdfs
-$HADOOP_HOME/bin/hadoop namenode -format
+$HADOOP_HOME/bin/hadoop namenode -format -force
 
-#start hadoop
-$HADOOP_HOME/bin/start-all.sh
+# set full permission for hadoop home
+sudo chmod -R 777 /home/vagrant/hadoop-1.2.1/
 
 echo "Everything is done, now please ssh to VM and type 'hive' for using hive.\nGood luck!!!"
