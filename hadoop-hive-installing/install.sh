@@ -45,7 +45,7 @@ echo "UPDATING OS..."
 sudo apt-get update
 
 echo "START DOWNLOADING JAVA..."
-sudo apt-get install --force-yes --yes openjdk-7-jre-headless
+sudo apt-get install --force-yes --yes openjdk-6-jdk
 
 
 echo "START INSTALLING MYSQL..."
@@ -56,14 +56,14 @@ sudo apt-get install --force-yes --yes mysql-client-core-5.5
 
 echo "Exporting envirionment variable..."
 # for first time
-export JAVA_HOME=/usr
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
 export HADOOP_HOME=/home/vagrant/hadoop-1.2.1
 export HIVE_HOME=/home/vagrant/hive-0.11.0
 export SQOOP_HOME=/home/vagrant/sqoop-1.4.4.bin__hadoop-1.0.0
 export PATH=$PATH:$HADOOP_HOME/bin:$HIVE_HOME/bin:$SQOOP_HOME/bin
 
 # for later
-echo 'export JAVA_HOME=/usr' >> /home/vagrant/.bashrc 
+echo 'export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64' >> /home/vagrant/.bashrc 
 
 # set HADOOP_HOME
 echo 'export HADOOP_HOME=/home/vagrant/hadoop-1.2.1' >> /home/vagrant/.bashrc 
@@ -82,13 +82,14 @@ echo 'export PATH=$PATH:$HADOOP_HOME/bin:$HIVE_HOME/bin:$SQOOP_HOME/bin' >> /hom
 cp -rf /home/vagrant/hadoop-hive-installing/hadoop/* $HADOOP_HOME/conf/
 
 # exporting java home for hadoop.
-echo 'export JAVA_HOME=/usr' >> $HADOOP_HOME/conf/hadoop-env.sh
+echo 'export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64' >> $HADOOP_HOME/conf/hadoop-env.sh
 
 # avoid waning Warning: $HADOOP_HOME is deprecated.
 echo 'export HADOOP_HOME_WARN_SUPPRESS="TRUE"' >> $HADOOP_HOME/conf/hadoop-env.sh
 
 # Download JDBC driver jar and store to sqood lib.
-wget -c https://mapmap.googlecode.com/files/mysql-connector-java-5.0.8-bin.jar /home/vagrant/sqoop-1.4.4.bin__hadoop-1.0.0/lib/mysql-connector-java-5.0.8-bin.jar
+wget -c https://mapmap.googlecode.com/files/mysql-connector-java-5.0.8-bin.jar
+sudo cp -rf /home/vagrant/mysql-connector-java-5.0.8-bin.jar /home/vagrant/sqoop-1.4.4.bin__hadoop-1.0.0/lib/mysql-connector-java-5.0.8-bin.jar
 
 # set full permission for hadoop home
 sudo chmod -R 777 /home/vagrant/hadoop-1.2.1/

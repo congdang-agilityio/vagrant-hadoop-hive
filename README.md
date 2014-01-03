@@ -64,8 +64,29 @@ Access DFS on browser
 Access job tracker on browser
 		[http://dev-hadoop:50030/jobtracker.jsp](http://dev-hadoop:50030/jobtracker.jsp)
     
+
+Test import data from mysql to hive
+==============================
+
+* Move to /vagrant
+
+		cd /vagrant
+
+* Create mysql database
+	
+		mysql -uroot -proot create database test_db
+
+* Import sample database to mysql
+
+		mysql test_db -uroot -proot < hedgefund-data.sql
+
+* Import mysql table to Hive
+
+		sqoop import --verbose --fields-terminated-by ',' --connect jdbc:mysql://localhost/test_db --table filings --username root --password root --hive-import --warehouse-dir /user/hive/warehouse --fields-terminated-by ',' --split-by id --hive-table filings
+
 Notes
 =====
+* filings a sample table.
 * dev-hadoop is forwarding to 192.168.33.15 automatic, this is private ip of Virtual machine, you can change in Vagrantfile
 * When vagrant up again, you must start hadoop manualy too.
  
