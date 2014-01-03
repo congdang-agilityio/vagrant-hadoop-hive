@@ -20,38 +20,38 @@ This would up the ubuntu server box and install some packages. Once running is d
 
 * SSH to VM
 
-    vagrant ssh
+		vagrant ssh
 
 * Create hdfs folder
 
-	mkdir /home/vagrant/hdfs
-	chmod -R 777 /home/vagrant/hdfs/
+		mkdir /home/vagrant/hdfs
+		chmod -R 777 /home/vagrant/hdfs/
 
 * Format Hadoop HDFS
 	
-	hadoop namenode -format -force
+		hadoop namenode -format -force
 
 * For starting hadoop without asking the password
 
-	ssh-keygen -t dsa -P '' -f /home/vagrant/.ssh/id_dsa
-	cat /home/vagrant/.ssh/id_dsa.pub >> /home/vagrant/.ssh/authorized_keys
+		ssh-keygen -t dsa -P '' -f /home/vagrant/.ssh/id_dsa
+		cat /home/vagrant/.ssh/id_dsa.pub >> /home/vagrant/.ssh/authorized_keys
 
 * Starting Hadoop
 	
-	start-all.sh
+		start-all.sh
 	
 * Starting Hive
 
-    hive
+    	hive
     
 * For testing, create a sample table
 
-    hive>CREATE TABLE pokes (foo INT, bar STRING);
+		hive>CREATE TABLE pokes (foo INT, bar STRING);
     
 Access DFS on browser 
-[http://dev-hadoop:50070/dfshealth.jsp](http://dev-hadoop:50070/dfshealth.jsp)
+		[http://dev-hadoop:50070/dfshealth.jsp](http://dev-hadoop:50070/dfshealth.jsp)
     
 Access job tracker on browser
-[http://dev-hadoop:50030/jobtracker.jsp](http://dev-hadoop:50030/jobtracker.jsp)
+		[http://dev-hadoop:50030/jobtracker.jsp](http://dev-hadoop:50030/jobtracker.jsp)
     
 *NOTEs: dev-hadoop is forwarding to 192.168.33.15 automatic, this is private ip of Virtual machine, you can change in Vagrantfile*
