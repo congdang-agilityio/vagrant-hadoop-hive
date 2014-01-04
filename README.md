@@ -19,6 +19,11 @@ Clone this project to local machine and run
     vagrant up
 
 This would up the ubuntu server box and install some packages. Once running is done, you should see the "Good luck!" message, so everything shoud be ready. 
+*NOTE: If you running on Windows, you might meet the error "/bin/sh^M: bad interpreter: No such file or directory". for fixing:*
+
+	sudo perl -i -pe 'y|\r||d' install.sh
+	
+*and run "vagrang up" again*
 
 * SSH to VM
 
@@ -79,9 +84,9 @@ Test import data from mysql to hive
 * Import sample database to mysql
 
 		mysql test_db -uroot -proot < hedgefund-data.sql
-* Create a Hive table called "test_db"
+* Create a Hive database called "test_db"
  
-		hive> create table test_db;
+		hive> create database test_db;
 
 * Import mysql table to Hive
 
