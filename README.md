@@ -79,10 +79,13 @@ Test import data from mysql to hive
 * Import sample database to mysql
 
 		mysql test_db -uroot -proot < hedgefund-data.sql
+* Create a Hive table called "test_db"
+ 
+		hive> create table test_db;
 
 * Import mysql table to Hive
 
-		sqoop import --verbose --fields-terminated-by ',' --connect jdbc:mysql://localhost/test_db --table filings --username root --password root --hive-import --warehouse-dir /user/hive/warehouse --fields-terminated-by ',' --split-by id --hive-table filings
+		sqoop import --verbose --fields-terminated-by ',' --connect jdbc:mysql://localhost/test_db --table filings --username root --password root --hive-import --warehouse-dir /user/hive/warehouse/test_db.db --fields-terminated-by ',' --split-by id --hive-database test_db --hive-table filings
 
 Notes
 =====
